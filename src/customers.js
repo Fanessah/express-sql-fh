@@ -20,3 +20,14 @@ const pool = new Pool(creds)
     res.send(customers.rows)
     pool.end()
 }
+
+export async  function addNewCustomers (req,res) {
+    const newCustomer = {first_name, last_name,email,phone} = req.body
+    const pool = new Pool(creds)
+    const query = `INSERT INTO customers(first_name, last_name, phone, email)
+       VALUES ('${first_name}', '${last_name}', '${phone}', '${email}'`
+    const customers = await pool.query (query)
+    .catch(err => res.status(500).send (err))
+    res.status(201).send(201).send({ message: 'Customer successfully created'})
+    pool.end()
+}
